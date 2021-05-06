@@ -10,24 +10,27 @@ class _SignInState extends State<SignIn> {
   AuthService _service = AuthService();
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          MaterialButton(
-            onPressed: () async {
-              final user = await _service.signInAnon();
-              if (user != null) {
-                print(user);
-              } else {
-                print('failed sign');
-              }
-            },
-            child: Text('Sign in'),
-            color: Colors.red,
-            textColor: Colors.white,
-          ),
-        ],
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            MaterialButton(
+              onPressed: () async {
+                final user = await _service.signInAnon();
+                if (user != null) {
+                  print('successful signing');
+                  print(user);
+                } else {
+                  print('failed sign');
+                }
+              },
+              child: Text('Sign in'),
+              color: Colors.red,
+              textColor: Colors.white,
+            ),
+          ],
+        ),
       ),
     );
   }
