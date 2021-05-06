@@ -16,9 +16,13 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<Users?>.value(
-      value: AuthService().user,
-      initialData: null,
+    return MultiProvider(
+      providers: [
+        StreamProvider<Users?>.value(
+          value: AuthService().user,
+          initialData: null,
+        ),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Firebase Android Demo',

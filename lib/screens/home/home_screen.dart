@@ -19,25 +19,34 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Log Out',
+          style: TextStyle(
+            color: Colors.red,
+            fontSize: 18.0,
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () async {
+              await _service.signOut();
+            },
+            child: Text(
+              'Log out',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ],
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            MaterialButton(
-              onPressed: () async {
-                await _service.signOut();
-              },
-              child: Text(
-                'Log out',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              color: Colors.red,
-            )
-          ],
+          children: [],
         ),
       ),
     );

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_android_setup/services/auth_service.dart';
 
-class SignIn extends StatefulWidget {
+class Register extends StatefulWidget {
   @override
-  _SignInState createState() => _SignInState();
+  _RegisterState createState() => _RegisterState();
 }
 
-class _SignInState extends State<SignIn> {
+class _RegisterState extends State<Register> {
   final formKey = GlobalKey<FormState>();
 
   TextEditingController? _controllerMail;
@@ -35,7 +35,7 @@ class _SignInState extends State<SignIn> {
             Container(
               margin: EdgeInsets.only(top: 40.0),
               child: Text(
-                'Firebase Sign In exam.',
+                'Firebase Register exam.',
                 style: TextStyle(
                   color: Colors.red,
                   fontSize: 30.0,
@@ -51,11 +51,8 @@ class _SignInState extends State<SignIn> {
                   children: [
                     TextFormField(
                       autofocus: true,
-                      validator: (input) {
-                        if (input!.isEmpty)
-                          return 'can not be null';
-                        else if (input.isNotEmpty) return null;
-                      },
+                      validator: (input) =>
+                          input!.isEmpty ? 'You must entry mail' : null,
                       controller: _controllerMail,
                       decoration: InputDecoration(
                         labelText: 'email',
@@ -109,7 +106,7 @@ class _SignInState extends State<SignIn> {
             ),
             Spacer(),
             Padding(
-              padding: const EdgeInsets.all(4.0),
+              padding: const EdgeInsets.all(10.0),
               child: SizedBox(
                 width: size.width * .8,
                 child: MaterialButton(
@@ -121,20 +118,20 @@ class _SignInState extends State<SignIn> {
                     }
                     if (_controllerMail!.text.isNotEmpty &&
                         _controllerPassword!.text.isNotEmpty) {
+                      FocusScope.of(context).unfocus();
                       final email = _controllerMail!.text;
                       final password = _controllerPassword!.text;
                       print('email : $email');
                       print('password : $password');
-                      dynamic result =
-                          await _service.signWithMailPassword(email, password);
-                      if (result != null) {
-                        print('register successfully.....');
-                      } else {
-                        print('failed');
+                      try {
+                        await _service.registerWithMailPassword(
+                            email, password);
+                      } catch (e) {
+                        print(e.toString());
                       }
                     }
                   },
-                  child: Text('Sign in'),
+                  child: Text('Register'),
                   color: Colors.red,
                   textColor: Colors.white,
                 ),
