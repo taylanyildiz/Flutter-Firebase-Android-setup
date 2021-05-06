@@ -1,6 +1,6 @@
 # flutter_firebase_android_setup
 
-A new Flutter project.
+This project show how to connection (sing in) ## firebase android
 
 ## Getting Started
 

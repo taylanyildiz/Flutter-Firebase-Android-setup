@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_android_setup/screens/authenticate/sing_in.dart';
 import 'screens/screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -12,7 +13,7 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   Future<Widget> checkUserLog() async {
-    return HomeScreen();
+    return SignIn();
   }
 
   // This widget is the root of your application.
